@@ -4,12 +4,15 @@ using CashFlow.Domain.Repositories.Expenses;
 namespace CashFlow.Infrastructure.DataAcces.Repositories;
 internal class ExpensesRepository : IExpensesRepository
 {
-    public void Add(Expense expense)
+    private readonly CashFlowDbContext _dbContent;
+
+    public ExpensesRepository(CashFlowDbContext dbContext)
     {
-        var dbContext = new CashFlowDbContext();
+        _dbContent = dbContext;
+    }
 
-        dbContext.Expenses.Add(expense);
-
-        dbContext.SaveChanges();
+    public async Task Add(Expense expense)
+    {
+        await _dbContent.Expenses.AddAsync(expense);
     }
 }
