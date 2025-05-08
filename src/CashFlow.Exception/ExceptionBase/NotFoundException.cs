@@ -1,9 +1,16 @@
-﻿namespace CashFlow.Exception.ExceptionBase;
+﻿using System.Net;
+
+namespace CashFlow.Exception.ExceptionBase;
 public class NotFoundException : CashFlowException
 {
-    public string Error = string.Empty;
-    public NotFoundException(string errorMessage)
+    public NotFoundException(string message) : base (message)
     {
-        Error = errorMessage;
+    }
+
+    public override int StatusCode => (int)HttpStatusCode.NotFound;
+
+    public override List<string> GetErrors()
+    {
+        return [Message];
     }
 }
