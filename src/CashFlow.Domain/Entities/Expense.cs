@@ -9,4 +9,7 @@ public class Expense
     public DateTime Date { get; set; }
     public decimal amount { get; set; }
     public PaymentType paymentType { get; set; }
+
+    public long UserId { get; set; }
+    public User user { get; set; } = default!;
 }
