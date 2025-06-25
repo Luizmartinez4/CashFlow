@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 namespace CashFlow.Application.UseCases.Users;
 public partial class PasswordValidator<T> : PropertyValidator<T, string>
 {
-    private const string ERROR_MESSAGE_KEY = "ErroeMessage";
+    private const string ERROR_MESSAGE_KEY = "ErrorMessage";
 
     public override string Name => "PasswordValidator";
 
