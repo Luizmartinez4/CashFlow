@@ -6,7 +6,7 @@ using CashFlow.Domain.Security.Tokens;
 using CashFlow.Exception.ExceptionBase;
 
 namespace CashFlow.Application.UseCases.Login;
-internal class DoLoginUseCase : IDoLoginUseCase
+public class DoLoginUseCase : IDoLoginUseCase
 {
     private readonly IUserReadOnlyRepository _repository;
     private readonly IPasswordEncripter _passwordEncripter;

@@ -3,7 +3,7 @@ using CashFlow.Exception;
 using FluentValidation;
 
 namespace CashFlow.Application.UseCases.Users.Register;
-internal class RegisterUserValidator : AbstractValidator<RequestRegisterUserJson>
+public class RegisterUserValidator : AbstractValidator<RequestRegisterUserJson>
 {
     public RegisterUserValidator()
     {
@@ -12,6 +12,7 @@ internal class RegisterUserValidator : AbstractValidator<RequestRegisterUserJson
             .NotEmpty()
             .WithMessage(ResourceErrorMessages.EMAIL_EMPTY)
             .EmailAddress()
+            .When(user => string.IsNullOrWhiteSpace(user.Email) == false, ApplyConditionTo.CurrentValidator)
             .WithMessage(ResourceErrorMessages.EMAIL_INVALID);
         RuleFor(user => user.Password).SetValidator(new PasswordValidator<RequestRegisterUserJson>());
     }
